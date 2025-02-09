@@ -11,3 +11,18 @@ const hoursInput = document.querySelector(hoursInputSelector)
 const minutesInput = document.querySelector(minutesInputSelector)
 const secondsInput = document.querySelector(secondsInputSelector)
 
+function startTimer(event){
+    event.preventDefault()
+}
+
+function updateTimer(){
+
+}
+
+function stopTimer(){
+
+}
+
+
+startButton.addEventListener("click",startTimer)
+stopButton.addEventListener("click",stopTimer)
