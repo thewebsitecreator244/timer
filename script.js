@@ -23,10 +23,20 @@ function startTimer(event){
     minutes = parseInt(minutesInput.value);
     seconds = parseInt(secondsInput.value);
     remainingTime = hours * 3600 + minutes * 60 + seconds;
+    for(i = remainingTime; i >= 0; i--){
+        updateTimer();
+    }
 }
 
 function updateTimer(){
     remainingTime = remainingTime - 1
+    hours = Math.floor(remainingTime / 3600)
+    minutes = Math.floor(remainingTime % 3600 / 60)
+    seconds = remainingTime % 60
+    
+    hoursInput.value = hours;
+    minutesInput.value = minutes;
+    secondsInput.value = seconds;
 
 }
 
