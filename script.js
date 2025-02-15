@@ -4,6 +4,7 @@ const hoursInputSelector = "#hours";
 const minutesInputSelector = "#minutes";
 const secondsInputSelector = "#seconds";
 
+const delay = 1
 
 const startButton = document.querySelector(startButtonSelector);
 const stopButton = document.querySelector(stopButtonSelector);
@@ -11,10 +12,16 @@ const hoursInput = document.querySelector(hoursInputSelector);
 const minutesInput = document.querySelector(minutesInputSelector);
 const secondsInput = document.querySelector(secondsInputSelector);
 
+
 let remainingTime;
 let hours;
 let minutes;
 let seconds;
+let intervalId;
+setTimeout(() => {
+    console.log("hello");
+    
+},5000)
 
 function startTimer(event){
     event.preventDefault();
@@ -23,9 +30,9 @@ function startTimer(event){
     minutes = parseInt(minutesInput.value);
     seconds = parseInt(secondsInput.value);
     remainingTime = hours * 3600 + minutes * 60 + seconds;
-    for(i = remainingTime; i >= 0; i--){
-        updateTimer();
-    }
+    // for(i = remainingTime; i >= 0; i--){
+    intervalId = setInterval(updateTimer, delay * 1000)
+    // 
 }
 
 function updateTimer(){
@@ -41,6 +48,7 @@ function updateTimer(){
 }
 
 function stopTimer(){
+    clearInterval(intervalId)
 
 }
 
