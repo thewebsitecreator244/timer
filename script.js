@@ -33,6 +33,9 @@ function startTimer(event){
     // for(i = remainingTime; i >= 0; i--){
     intervalId = setInterval(updateTimer, delay * 1000)
     // 
+    document.documentElement.requestFullscreen()
+    hideElement(startButton)
+    showElement(stopButton)
 }
 
 function updateTimer(){
@@ -41,17 +44,27 @@ function updateTimer(){
     minutes = Math.floor(remainingTime % 3600 / 60)
     seconds = remainingTime % 60
     
-    hoursInput.value = hours;
-    minutesInput.value = minutes;
-    secondsInput.value = seconds;
+    hoursInput.value = hours.toString().padStart(2,"0");
+    minutesInput.value = minutes.toString().padStart(2,"0");
+    secondsInput.value = seconds.toString().padStart(2,"0");
 
 }
 
 function stopTimer(){
-    clearInterval(intervalId)
-
+    clearInterval(intervalId);
+    hideElement(stopButton)
+    setTimeout(() => {
+        document.exitFullscreen();
+        showElement(startButton)
+    },1000)
 }
 
+function hideElement(element) {
+    element.classList.add("hide");
+}
+function showElement(element) {
+    element.classList.remove("hide");
+}
 
 startButton.addEventListener("click",startTimer);
 stopButton.addEventListener("click",stopTimer);
